@@ -17,7 +17,7 @@ def ensemble_waste_level(
     if strategy not in ("soft_vote", "majority_vote"):
         raise ValueError("strategy must be 'soft_vote' or 'majority_vote'")
 
-    # ── Collect individual predictions ───────────────────────────────────────
+    # Collect individual predictions
     knn_result = predict_knn(material_type, area, thickness)
     lr_result  = predict_logistic(material_type, area, thickness)
     svm_result = predict_svm_waste_level(
@@ -51,13 +51,13 @@ def ensemble_waste_level(
     high_votes = sum(1 for v in votes.values() if v == "High Waste")
     low_votes  = 3 - high_votes
 
-    # ── Agreement summary ────────────────────────────────────────────────────
+    # Agreement summary 
     if high_votes == 3 or low_votes == 3:
         agreement = "unanimous"
     else:
         agreement = "majority"
 
-    # ── Strategy: Majority Vote ───────────────────────────────────────────────
+    # Majority Vote
     if strategy == "majority_vote":
         if high_votes > low_votes:
             final = "High Waste"
@@ -75,7 +75,7 @@ def ensemble_waste_level(
             "models":      models,
         }
 
-    # ── Strategy: Soft Vote (averaged probabilities) ─────────────────────────
+    # Soft Vote (averaged probabilities)
     avg_low  = sum(m["low_waste_prob"]  for m in models.values()) / 3
     avg_high = sum(m["high_waste_prob"] for m in models.values()) / 3
 

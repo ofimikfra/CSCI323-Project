@@ -2,12 +2,9 @@ import joblib
 import numpy as np
 import pandas as pd
 
-# ─────────────────────────────────────────────────────────────────────────────
-# MODEL 1 — KNN Classifier
-# Notebook : knn_model.ipynb
-# Artefacts: models/knn_model.pkl, knn_scaler.pkl, knn_label_encoder.pkl, knn_threshold.pkl
-# Task     : Classify High / Low Waste (threshold = mean waste % of entire dataset)
-# ─────────────────────────────────────────────────────────────────────────────
+
+# KNN Classifier
+# Classify High / Low Waste (threshold = mean waste % of entire dataset)
 
 def predict_knn(material_type: str, area: float, thickness: float) -> dict:
     """
@@ -52,12 +49,8 @@ def predict_knn(material_type: str, area: float, thickness: float) -> dict:
     }
 
 
-# ─────────────────────────────────────────────────────────────────────────────
-# MODEL 2 — Logistic Regression Classifier
-# Notebook : Logistic_Regression.ipynb
-# Artefacts: models/lr_model.pkl, lr_scaler.pkl
-# Task     : Classify High / Low Waste Risk (threshold = 10% waste percentage)
-# ─────────────────────────────────────────────────────────────────────────────
+# Logistic Regression Classifier
+# Classify High / Low Waste Risk (threshold = 10% waste percentage)
 
 def predict_logistic(material_type: str, area: float, thickness: float) -> dict:
     """
@@ -104,12 +97,8 @@ def predict_logistic(material_type: str, area: float, thickness: float) -> dict:
     }
 
 
-# ─────────────────────────────────────────────────────────────────────────────
-# MODEL 3 — Random Forest Regressor
-# Notebook : random_forest_model.ipynb
-# Artefacts: models/rf_pipeline.pkl 
-# Task     : Predict Waste Percentage (continuous)
-# ─────────────────────────────────────────────────────────────────────────────
+# Random Forest Regressor
+# Predict Waste Percentage (continuous)
 
 def predict_random_forest(
     material_type: str,
@@ -156,12 +145,8 @@ def predict_random_forest(
     }
 
 
-# ─────────────────────────────────────────────────────────────────────────────
-# MODEL 4a — SVM Waste Level Classifier
-# Notebook : SVMClassificationModel.ipynb
-# Artefacts: models/svm_waste_model.pkl, svm_label_encoder.pkl, svm_meta.pkl
-# Task     : Classify High / Low Waste Level (threshold = median waste percentage)
-# ─────────────────────────────────────────────────────────────────────────────
+# SVM Waste Level Classifier
+# Classify High / Low Waste Level (threshold = median waste percentage)
 
 def predict_svm_waste_level(
     material_type: str,
@@ -215,12 +200,10 @@ def predict_svm_waste_level(
     }
 
 
-# ─────────────────────────────────────────────────────────────────────────────
-# MODEL 4b — SVM Material Type Classifier
-# Notebook : SVMClassificationModel.ipynb
-# Artefacts: models/svm_material_model.pkl, svm_label_encoder.pkl
-# Task     : Predict material type — GI or PI
-# ─────────────────────────────────────────────────────────────────────────────
+
+# SVM Material Type Classifier
+# Predict material type — GI or PI
+
 
 def predict_svm_material_type(
     area: float,
@@ -267,9 +250,7 @@ def predict_svm_material_type(
     }
 
 
-# ─────────────────────────────────────────────────────────────────────────────
-# Formatting helpers
-# ─────────────────────────────────────────────────────────────────────────────
+# formatting
 
 def header(title):
     print("\n" + "=" * 60)
@@ -280,9 +261,7 @@ def row(label, value):
     print(f"  {label:<32} {value}")
 
 
-# ─────────────────────────────────────────────────────────────────────────────
-# Test runners
-# ─────────────────────────────────────────────────────────────────────────────
+# test runners
 
 def run_knn_tests(SIMPLE_CASES):
     header("MODEL 1 — KNN  (High / Low Waste)")
