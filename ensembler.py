@@ -93,41 +93,6 @@ def ensemble_waste_level(
         "models":           models,
     }
 
-
-
-def run_ensemble_tests(EXTENDED_CASES):
-    for strategy in ("soft_vote", "majority_vote"):
-        header(f"ENSEMBLE  (Waste Level — {strategy.replace('_', ' ').title()})")
-        for c in EXTENDED_CASES:
-            r = ensemble_waste_level(
-                material_type     = c["material_type"],
-                area              = c["area"],
-                thickness         = c["thickness"],
-                material_cost_aed = c["material_cost"],
-                waste_cost_aed    = c["waste_cost"],
-                strategy          = strategy,
-            )
-
-            print("\n" + "=" * 60)
-            print()
-            row("Material Type",       c["material_type"])
-            row("Area (sq/m)",         c["area"])
-            row("Thickness (mm)",      c["thickness"])
-            row("Material Cost (AED)", c["material_cost"])
-            row("Waste Cost (AED)",    c["waste_cost"])
-            print(f"  {'─' * 44}")
-            row("KNN vote",            r["votes"]["KNN"])
-            row("Logistic Reg vote",   r["votes"]["Logistic Regression"])
-            row("SVM vote",            r["votes"]["SVM"])
-            row("Agreement",           r["agreement"])
-            print(f"  {'─' * 44}")
-            row("Final Prediction",    r["prediction"])
-            row("Confidence",          f"{r['confidence']:.1%}")
-            if strategy == "soft_vote":
-                row("Avg Low / High prob",
-                    f"{r['low_waste_prob']:.1%}  /  {r['high_waste_prob']:.1%}")
-                
-
 def run_ensemble_tests(EXTENDED_CASES):
     for strategy in ("soft_vote", "majority_vote"):
         header(f"ENSEMBLE  (Waste Level — {strategy.replace('_', ' ').title()})")
