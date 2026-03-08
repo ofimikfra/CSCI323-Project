@@ -19,3 +19,16 @@ pip install -r requirements.txt
 python main.py
 ```
 Runs predictions with simple and extended test cases for each model, as well as ensemble predictions (majority and soft vote).
+
+## Reproducibility guide
+1. Data files should be placed in `data\`.
+2. Run each notebook in `notebooks\`:
+    - `knn_model.ipynb`
+    - `Logistic_Regression.ipynb`
+    - `random_forest_model.ipynb`
+    - `SVMClassificationModel.ipynb`
+3. Run predictions.
+```bash
+python main.py
+```
+> All models were trained with `random_state=42` to ensure deterministic results. 
